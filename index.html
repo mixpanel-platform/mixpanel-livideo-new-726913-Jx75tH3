@@ -63,6 +63,7 @@
           
           
           //////////////played broadcast by top locations//////////////
+          var outputOne = {};
           var params =  $.extend({}, dates, {
             'where': '\"' + broadcasterName + '\" in string(properties[\"Broadcaster\"]) and defined (properties[\"$city\"])',
             'limit': 10,
@@ -70,14 +71,27 @@
           });
           
           MP.api.segment('Played Broadcast', '$city', params).done(function(resultsOne) {
-            $('<h1 class = "graphs" style="font-size: 15px; color: rgb(95,105,131)">' + broadcasterName + ': Watched Broadcast by Top Location</h1>' ).css({'padding': '10px'}).appendTo('body');
-            
-            $('<div class = "graphs"> </div>').css({'width':'100%', 'float':'left', 'padding': '10px'}).appendTo('body').MPChart({
-                chartType: 'bar',
-                data: resultsOne
+            var query = resultsOne.values();
+
+            _.each(_.keys(query), function(property){
+              var dates = query[property]
+              var sum = 0
+
+            _.each(_.keys(dates), function(date){
+              sum = sum + dates[date];
             });
             
-            console.log(resultsOne.values());
+            outputTwo[property] = sum;
+          });
+            
+            $('<h1 class = "graphs" style="font-size: 15px; color: rgb(95,105,131)">' + broadcasterName + ': Watched Broadcast by Top Location</h1>' ).css({'padding': '10px'}).appendTo('body');
+            
+            // $('<div class = "graphs"> </div>').css({'width':'100%', 'float':'left', 'padding': '10px'}).appendTo('body').MPChart({
+            //     chartType: 'bar',
+            //     data: resultsOne
+            // });
+            
+            // console.log(resultsOne.values());
             
              $('<div class = "graphs"></div>').css({'width':'100%', 'float':'left', 'padding': '15px'}).appendTo('body').MPTable({
               showPercentages: true,
