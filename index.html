@@ -81,7 +81,7 @@
             outputOne[property] = sum;
           });
             
-            $('<h1 class = "graphs" style="font-size: 15px; color: rgb(95,105,131)">' + broadcasterName + ': Watched Broadcast by Top Location</h1>' ).css({'padding': '10px'}).appendTo('body');
+            $('<h1 class = "graphs" style="font-size: 15px; color: rgb(95,105,131); ">' + broadcasterName + ': Watched Broadcast by Top Location</h1>' ).css({'padding': '10px' 'display': 'inline-block'}).appendTo('body');
             
             console.log(outputOne);
             
@@ -107,7 +107,7 @@
           // };    
                 
                 
-             $('<div class = "graphs"></div>').css({'width':'40%', 'float':'left', 'padding': '15px', 'display': 'inline-block',}).appendTo('body').MPTable({
+             $('<div class = "graphs"></div>').css({'width':'40%', 'float':'left', 'padding': '15px', 'display': 'inline-block'}).appendTo('body').MPTable({
               showPercentages: true,
               firstColHeader: 'City',
               data: outputOne
@@ -123,14 +123,10 @@
           });
           
           MP.api.segment('Played Broadcast', 'Age Range', params).done(function(resultsTwo) {
-            $('<h1 class = "graphs" style="font-size: 15px; color: rgb(95,105,131)">' + broadcasterName + ': Watched Broadcast by Age Group</h1>' ).css({'padding': '10px'}).appendTo('body');
+            $('<h1 class = "graphs" style="font-size: 15px; color: rgb(95,105,131)">' + broadcasterName + ': Watched Broadcast by Age Group</h1>' ).css({'padding': '10px' 'display': 'inline-block'}).appendTo('body');
             
-            $('<div class = "graphs"></div>').css({'width':'100%', 'float':'left', 'padding': '10px'}).appendTo('body').MPChart({
-                chartType: 'bar',
-                data: resultsTwo
-            });
             
-             $('<div class = "graphs"></div>').css({'width':'100%', 'float':'left', 'padding': '15px'}).appendTo('body').MPTable({
+             $('<div class = "graphs"></div>').css({'width':'100%', 'float':'left', 'padding': '15px' 'display': 'inline-block'}).appendTo('body').MPTable({
               showPercentages: true,
               firstColHeader: 'Age Group',
               data: resultsTwo
